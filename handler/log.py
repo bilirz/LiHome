@@ -2,7 +2,8 @@ from flask import Blueprint, render_template, session
 import pymongo
 
 bp = Blueprint('log', __name__)
-mongo = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
+client = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
+db = client['li']
 
 
 @bp.route('/log')

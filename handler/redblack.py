@@ -3,8 +3,9 @@ import time
 import pymongo
 
 bp = Blueprint('redblack', __name__)
-mongo = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
-db = mongo['li']['redblack']
+client = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
+db = client['li']
+coll = db['redblack']
 
 
 @bp.route('/redblack', methods=['GET', 'POST'])
@@ -25,8 +26,8 @@ def redblack():
                         'reason': request.values.get('reason'),
                         'time': time.time()
                         }
-            db.insert_one(document)
-        return render_template('redblack/add.html', session=session['user'], users=mongo['li']['user'].find())
+            coll.insert_one(document)
+        return render_template('redblack/add.html', session=session['user'], users=db['user'].find())
 
 @bp.route('/redblack/list', methods=['GET', 'POST'])
 def text():
@@ -39,4 +40,4 @@ def text():
     if session['user']['status'] == 0:
         return render_template('user/status_error.html', session=session['user'], is_index=False)
     else:
-        return render_template('redblack/list.html', session=session['user'], redblacks=db.find())
+        return render_template('redblack/list.html', session=session['user'], redblacks=coll.find())

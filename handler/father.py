@@ -3,7 +3,8 @@ from flask import Blueprint, session, request, redirect
 import pymongo
 
 bp = Blueprint('father', __name__)
-mongo = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
+client = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
+db = client['li']
 
 
 @bp.route('/father', methods=['GET', 'POST'])
@@ -17,10 +18,10 @@ def father():
     if request.method == 'POST':
         if int(request.values.get('state')) == 1:
             if session['user']['id'] != -1:
-                mongo['li']['user'].update_one({'id':session['user']['id']},{'$set':{'visit_all_count':mongo['li']['user'].find_one({'id':session['user']['id']})['visit_all_count']+1}})
+                db['user'].update_one({'id':session['user']['id']},{'$set':{'visit_all_count':db['user'].find_one({'id':session['user']['id']})['visit_all_count']+1}})
             else:
-                if mongo['li']['data'].find_one({'type':'visit_tourist'}) is None:
-                    mongo['li']['data'].insert_one({'type':'visit_tourist','count_all':0, 'count_index':0})
+                if db['data'].find_one({'type':'visit_tourist'}) is None:
+                    db['data'].insert_one({'type':'visit_tourist','count_all':0, 'count_index':0})
                 else:
-                    mongo['li']['data'].update_one({'type':'visit_tourist'},{'$set':{'count_all':mongo['li']['data'].find_one({'type':'visit_tourist'})['count_all']+1}})
+                    db['data'].update_one({'type':'visit_tourist'},{'$set':{'count_all':db['data'].find_one({'type':'visit_tourist'})['count_all']+1}})
     return redirect('/')

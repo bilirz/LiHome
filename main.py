@@ -6,7 +6,8 @@ from flask import Flask, render_template, session
 from handler import static, father, index, log, user, redblack
 import config
 
-mongo = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
+client = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
+db = client['li']
 
 app = Flask(__name__)
 
@@ -28,7 +29,7 @@ def miss(error):
 
 @app.template_filter('id_name')
 def id_name(id):
-    return mongo['li']['user'].find_one({'id':id})['name']
+    return db['user'].find_one({'id':id})['name']
 
 @app.template_filter('custom_time')
 def custom_time(timestamp):

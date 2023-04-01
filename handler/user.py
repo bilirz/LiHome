@@ -4,8 +4,9 @@ import pymongo
 from flask import Blueprint, render_template, request, session, redirect
 
 bp = Blueprint('user', __name__)
-mongo = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
-db = mongo['li']['user']
+client = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
+db = client['li']
+coll = db['user']
 
 
 def md5(require, salt):
@@ -24,12 +25,12 @@ def login():
             'status': 0
         }
     if request.method == 'POST':
-        if db.find_one({'name':request.values.get('name')}) is not None:
-            if md5(request.values.get('password'), db.find_one({'name':request.values.get('name')})['time']) == db.find_one({'name':request.values.get('name')})['password']:
+        if coll.find_one({'name':request.values.get('name')}) is not None:
+            if md5(request.values.get('password'), coll.find_one({'name':request.values.get('name')})['time']) == coll.find_one({'name':request.values.get('name')})['password']:
                 session['user'] = {
-                    'id':db.find_one({'name':request.values.get('name')})['id'],
-                    'name':db.find_one({'name':request.values.get('name')})['name'],
-                    'status': db.find_one({'name':request.values.get('name')})['status']
+                    'id':coll.find_one({'name':request.values.get('name')})['id'],
+                    'name':coll.find_one({'name':request.values.get('name')})['name'],
+                    'status': coll.find_one({'name':request.values.get('name')})['status']
                     }
     return render_template('user/login.html', session=session['user'])
 
@@ -44,10 +45,10 @@ def register():
         }
     if request.method == 'POST':
         time_then = time.time()
-        if db.find_one() is None:
+        if coll.find_one() is None:
             id_ = 1
         else:
-            id_ = db.find_one(sort=[( '_id', -1)])['id']+1
+            id_ = coll.find_one(sort=[( '_id', -1)])['id']+1
         document = {
             'id': id_,
             'name': request.values.get('name'),
@@ -57,7 +58,7 @@ def register():
             'visit_index_count': 0,
             'time': time_then,
             }
-        db.insert_one(document)
+        coll.insert_one(document)
     return render_template('user/register.html', session=session['user'])
 
 
