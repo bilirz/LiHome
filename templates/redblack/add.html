@@ -67,7 +67,10 @@
                   "reason": document.getElementById("reason").value
                   }
                 });
-                location.href = "/"
+                layui.use('layer', function(){
+                  var layer = layui.layer;
+                  layer.msg('记账完成~');
+                });
               }else{
                 layui.use('layer', function(){
                   var layer = layui.layer;

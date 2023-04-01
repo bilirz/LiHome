@@ -20,7 +20,7 @@
 {% extends "father.html" %}
 {% block content %}
   <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alart">
-    <strong>老李家Li项目重构了！</strong>项目于2023.04正式回复！目前有很多功能的缺失，我会慢慢补全，相关请查看开发日志。
+    <strong>老李家Li项目重构了！</strong>项目于2023.04正式恢复！目前有很多功能的缺失，我会慢慢补全，相关请查看开发日志。
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="indexCookie()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -63,12 +63,12 @@
   <p>欢迎回家，{{ session.name }}</p>
   <p>截止{{ time | custom_time }}，该网站共计被访问{{ visit_all }}次，其中，
     {% for user in users_all %}
-    {{ user.name }}访问{{ user.visit_all_count }}次
-    {% endfor %}，游客访问{{ visit_tourist_all }}次。</p>
+    {{ user.name }}访问{{ user.visit_all_count }}次，
+    {% endfor %}游客访问{{ visit_tourist_all }}次。</p>
   <p>该网站主页共计被访问{{ visit_index }}次，其中，
   {% for user in users_index %}
-  {{ user.name }}访问{{ user.visit_index_count }}次
-  {% endfor %}，游客访问{{ visit_tourist_index }}次。</p>
+  {{ user.name }}访问{{ user.visit_index_count }}次，
+  {% endfor %}游客访问{{ visit_tourist_index }}次。</p>
 
 {% endblock %}
 </body>
