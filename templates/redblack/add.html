@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加 - 红黑帐 - Li</title>
+</head>
+
+<body>
+{% extends "father.html" %}
+{% block content %}
+  <div>
+    <div class="card lcard">
+      <div class="lcard-title">
+        <span>添加红黑帐</span>
+      </div>
+      <div class="lcard-line"></div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label">记账人</label>
+            <input class="form-control" type="text" placeholder="{{ session.name }}" readonly>
+          </div>
+          <div class="form-group">
+            <label">被记账人</label>
+            <select class="form-control">
+              {% for user in users %}
+                <option id="bid" value="{{user.id}}">{{ user.id | id_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>记账类型</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="redblack" value="0" id="type">
+                <label class="form-check-label">记红帐</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="redblack" value="1" id="type">
+                <label class="form-check-label">记黑帐</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>记账原因</label>
+            <textarea id="reason" class="form-control" rows="3"></textarea>
+          </div>
+          
+        </form>
+        <button type="submit" class="btn btn-primary" id="swap_button">记录</button>
+        <a href="/redblack/list"><button class="btn btn-outline-info">查看账单</button></a>
+        <script>
+          function send() {
+            if (document.getElementById("type").value !== ''){
+              if (document.getElementById("reason").value !== ''){
+                $.ajax({
+                type: "POST",
+                url: "/redblack",
+                dataType: "json",
+                data: {
+                  "bid": document.getElementById("bid").value,
+                  "type": document.getElementById("type").value,
+                  "reason": document.getElementById("reason").value
+                  }
+                });
+                location.href = "/"
+              }else{
+                layui.use('layer', function(){
+                  var layer = layui.layer;
+                  layer.msg('记账原因不能为空。');
+                });
+              }
+            }else{
+              layui.use('layer', function(){
+                var layer = layui.layer;
+                layer.msg('记账类型不能为空。');
+              });
+            }
+          }
+        document.getElementById("swap_button").addEventListener("click", send);
+        </script>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+</body>
+
+</html>

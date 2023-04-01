@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注册 - Li</title>
+</head>
+
+<body>
+{% extends "father.html" %}
+{% block content %}
+  <div>
+    <div class="card lcard">
+      <div class="lcard-title">
+        <span>注册</span>
+      </div>
+      <div class="lcard-line"></div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label>昵称</label>
+            <input class="form-control" id="name">
+            <small class="form-text text-muted">注册后暂不支持更改昵称。</small>
+          </div>
+          <div class="form-group">
+            <label>密码</label>
+            <input type="password" class="form-control" id="password">
+          </div>
+          <div class="form-group">
+            <label>重复密码</label>
+            <input type="password" class="form-control" id="again_password">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="agree">
+            <label class="form-check-label">我已同意<a href="/user/agreement" class="text-decoration-none">《老李家Li用户协议》</a></label>
+          </div>
+        </form>
+        <button type="submit" class="btn btn-primary" id="swap_button">登录</button>
+        <a href="/user/register"><button class="btn btn-outline-info">注册</button></a>
+        <script>
+          function send() {
+            if (document.getElementById("agree").checked === true) {
+              if (document.getElementById("name").value !== '' && document.getElementById("password").value !== ''){
+                if (document.getElementById("password").value == document.getElementById("again_password").value){
+                  $.ajax({
+                  type: "POST",
+                  url: "/user/register",
+                  dataType: "json",
+                  data: {
+                    "name": document.getElementById("name").value,
+                    "password": document.getElementById("password").value
+                    }
+                  });
+                  location.href = "/user/login"
+                }else{
+                  layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.msg('两次输入密码不相同。');
+                  });
+                }
+              }else{
+                layui.use('layer', function(){
+                  var layer = layui.layer;
+                  layer.msg('账号或密码不能为空。');
+                });
+              }
+            }else{
+              layui.use('layer', function(){
+                var layer = layui.layer;
+                layer.msg('您没有同意用户协议，请先同意用户协议。');
+              });
+          }
+        }
+        document.getElementById("swap_button").addEventListener("click", send);
+        </script>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+</body>
+
+</html>

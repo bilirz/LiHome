@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开发日志 - Li</title>
+</head>
+
+<body>
+{% extends "father.html" %}
+{% block content %}
+  <style>
+    .layui-icon{
+      color: #25ACE3;
+    }
+  </style>
+  <div class="card lcard">
+    <div class="lcard-title">
+      <span>开发日志</span>
+    </div>
+    <div class="lcard-line"></div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <ul class="layui-timeline">
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe635;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-12-25 &nbsp; v.0.10.1</h3>
+            <p>美化部分页面的代码的单双引号</p>
+            <p>主页换行使用br</p>          
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe600;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-12-21 &nbsp; v.0.10.0</h3>
+            <p>美化所有页面卡片</p>
+            <p>修复了首页游戏显示bug、游戏排名页面不显示图表等问题</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe653;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-12-20 &nbsp; v.0.9.0</h3>
+            <p>新增每日格言、菜谱功能</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe653;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-12-20 &nbsp; v.0.8.0</h3>
+            <p>分配唯一code128 id</p>
+            <p>现在可以关注家庭成员了</p>
+            <p>在家庭成员页面可以看到能量值</p>
+            <p>现在点击按钮有提示了</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe653;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-12-08 &nbsp; v.0.7.2</h3>
+            <p>首页显示其他家庭成员列表和家庭获奖列表</p>
+            <p>家庭成员页面显示红黑帐相关计数</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe653;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-12-04 &nbsp; v.0.7.1</h3>
+            <p>红黑帐新增选择查看功能</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe653;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-11-28 &nbsp; v.0.7.0</h3>
+            <p>更新用户主页</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe653;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-11-27 &nbsp; v.0.6.0</h3>
+            <p>新增PK功能</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe656;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-11-25 &nbsp; v.0.5.1</h3>
+            <p>优化用户相关权限</p>
+            <p>新增用户主页</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe653;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-11-24 &nbsp; v.0.5.0</h3>
+            <p>新增登录注册相关</p>
+            <p>美化表单</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe653;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-11-17 &nbsp; v.0.4.0</h3>
+            <p>完善了首页</p>
+            <p>新增能量值功能</p>
+            <p>加入一些静态文件</p>
+            <p>调整了小游戏倍率</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe653;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-11-16 &nbsp; v.0.3.0</h3>
+            <p>美化了网站细节</p>
+            <p>对看记账、看特殊日功能进行可合理的排序</p>
+            <p>看记账、看特殊日功能记错的信息可以删除了</p>
+            <p>新增游戏性玩法——家庭“乱斗”小游戏</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe635;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-11-15 &nbsp; v.0.2.0</h3>
+            <p>前端改用layui框架</p>
+            <p>完成了特殊日功能</p>
+            <p>完成了首页</p>
+            <p>上线服务器</p>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe62a;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-11-14 &nbsp; v.0.1.1</h3>
+            <p>记账功能使用数据库</p>
+          </div>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe656;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-11-13 &nbsp; v.0.1.0</h3>
+            <p>使用bootstrap前端框架</p>
+            <p>完成了记账功能的前端</p>
+          </div>
+        </li>
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe66c;</i>
+          <div class="layui-timeline-content layui-text">
+            <h3 class="layui-timeline-title">2022-07-03 &nbsp; v.0.0.0</h3>
+            <p>里程碑——初始化项目</p>
+            <p>完成了记账功能的后端</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}
+</body>
+
+</html>

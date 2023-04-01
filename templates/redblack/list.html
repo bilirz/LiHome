@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>查看 - 红黑账 - Li</title>
+</head>
+
+<body>
+{% extends "father.html" %}
+{% block content %}
+  <div>
+    {% for redblack in redblacks %}
+    <div>
+      <div class="card lcard">
+        <div class="lcard-title">
+          <span>{{ redblack.time | custom_time }}</span>
+        </div>
+        <div class="lcard-line"></div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          {{ redblack.id | id_name }}记录{{ redblack.bid | id_name }}
+          {% if redblack.type == 0 %}<span style="color: #ff4f4f;">“红帐”</span>{% elif redblack.type == 1 %}“黑账”{% endif %}：{{ redblack.reason }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+</body>
+
+</html>

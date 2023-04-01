@@ -5,11 +5,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>主页 - Li</title>
+  <style>
+    .notice_bar{
+      padding: 15px;
+      line-height: 1.5;
+      border-left: 5px solid #25ACE3;
+      border-radius: 0 2px 2px 0;
+      background-color: #ffffff;
+    }
+</style>
 </head>
 
 <body>
 {% extends "father.html" %}
 {% block content %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alart">
+    <strong>老李家Li项目重构了！</strong>项目于2023.04正式回复！目前有很多功能的缺失，我会慢慢补全，相关请查看开发日志。
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="indexCookie()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <script>
+    function setCookie(name,value){
+      var Days = 2;
+      var exp = new Date();
+      exp.setTime(exp.getTime() + Days*24*60*60*1000);
+      document.cookie = name + '=' + escape (value) + ';expires=' + exp.toGMTString();
+    }
+    function getCookie(name){    
+      var arr,reg=new RegExp('(^| )'+name+'=([^;]*)(;|$)');
+      if(arr=document.cookie.match(reg))
+          return unescape(arr[2]);
+      else
+          return null;
+    }
+    function indexCookie(){
+      setCookie('index_alart', 0)
+    }
+    function loadCookie(){
+      if (getCookie('index_alart') == 0){
+        document.getElementById("alart").style.display="none";
+      }
+    }
+    loadCookie()
+  </script>
+  欢迎回家，{{ session.name }}
 {% endblock %}
 </body>
 

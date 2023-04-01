@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>暂无查看权限 - Li</title>
+</head>
+
+<body>
+{% extends "father.html" %}
+{% block content %}
+  <div>
+    <div class="jumbotron">
+      <h1 class="display-4">您好</h1>
+      <p class="lead">您还没有登录该网站，暂无查看权限。</p>
+      <hr class="my-4">
+      <p>点击此按钮以登录网站。</p>
+      <a class="btn btn-primary btn-lg" href="/user/login" role="button">登录</a>
+    </div>
+  </div>
+{% endblock %}
+</body>
+
+</html>

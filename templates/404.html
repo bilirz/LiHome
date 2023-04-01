@@ -10,12 +10,15 @@
 <body>
 {% extends "father.html" %}
 {% block content %}
-<div>
   <div>
-    <h1>404：页面不存在</h1>
-    <p>服务器没有找到该页面。</p>
+    <div class="jumbotron">
+      <h1 class="display-4">404：页面不存在</h1>
+      <p class="lead">服务器没有找到该页面。</p>
+      <hr class="my-4">
+      <p>点击此按钮回到上一页。</p>
+      <a class="btn btn-primary btn-lg" role="button" onClick="javascript :history.back(-1);">返回上一页</a>
+    </div>
   </div>
-</div>
 {% endblock %}
 </body>
 
