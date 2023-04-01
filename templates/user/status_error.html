@@ -18,6 +18,22 @@
       <p>点击此按钮以登录网站。</p>
       <a class="btn btn-primary btn-lg" href="/user/login" role="button">登录</a>
     </div>
+    {% if is_index == True %}
+    <script>
+      function visitCountIndex(){
+      $.ajax({
+        type: "POST",
+        url: "/",
+        dataType: "json",
+        data: {
+          "state": 0
+          }
+        });
+      }
+      visitCountIndex()
+    </script>
+    {% else %}
+    {% endif %}
   </div>
 {% endblock %}
 </body>

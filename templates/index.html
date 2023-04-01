@@ -27,14 +27,14 @@
   </div>
   <script>
     function setCookie(name,value){
-      var Days = 2;
-      var exp = new Date();
-      exp.setTime(exp.getTime() + Days*24*60*60*1000);
-      document.cookie = name + '=' + escape (value) + ';expires=' + exp.toGMTString();
+      var Days = 0.5;
+      var expires = new Date();
+      expires.setTime(expires.getTime() + Days*24*60*60*1000);
+      document.cookie = name + '=' + escape (value) + ';expires=' + expires.toGMTString();
     }
     function getCookie(name){    
-      var arr,reg=new RegExp('(^| )'+name+'=([^;]*)(;|$)');
-      if(arr=document.cookie.match(reg))
+      var arr, reg = new RegExp('(^| )'+name+'=([^;]*)(;|$)');
+      if(arr = document.cookie.match(reg))
           return unescape(arr[2]);
       else
           return null;
@@ -48,8 +48,28 @@
       }
     }
     loadCookie()
+    function visitCountIndex(){
+      $.ajax({
+        type: "POST",
+        url: "/",
+        dataType: "json",
+        data: {
+          "state": 0
+          }
+        });
+      }
+      visitCountIndex()
   </script>
-  欢迎回家，{{ session.name }}
+  <p>欢迎回家，{{ session.name }}</p>
+  <p>截止{{ time | custom_time }}，该网站共计被访问{{ visit_all }}次，其中，
+    {% for user in users_all %}
+    {{ user.name }}访问{{ user.visit_all_count }}次
+    {% endfor %}，游客访问{{ visit_tourist_all }}次。</p>
+  <p>该网站主页共计被访问{{ visit_index }}次，其中，
+  {% for user in users_index %}
+  {{ user.name }}访问{{ user.visit_index_count }}次
+  {% endfor %}，游客访问{{ visit_tourist_index }}次。</p>
+
 {% endblock %}
 </body>
 

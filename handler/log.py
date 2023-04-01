@@ -14,6 +14,6 @@ def log():
             'status': 0
         }
     if session['user']['status'] == 0:
-        return render_template('user/status_error.html', session=session['user'])
+        return render_template('user/status_error.html', session=session['user'], is_index=False)
     else:
         return render_template('log.html', session=session['user'])

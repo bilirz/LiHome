@@ -3,7 +3,7 @@ import time
 import pymongo
 
 from flask import Flask, render_template, session
-from handler import static, index, log, user, redblack
+from handler import static, father, index, log, user, redblack
 import config
 
 mongo = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
@@ -11,6 +11,7 @@ mongo = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
 app = Flask(__name__)
 
 app.register_blueprint(static.bp)
+app.register_blueprint(father.bp)
 app.register_blueprint(index.bp)
 app.register_blueprint(log.bp)
 app.register_blueprint(user.bp)

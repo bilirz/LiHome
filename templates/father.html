@@ -63,6 +63,19 @@
         {% endblock %}
       </div>
     </div>
+    <script>
+      function visitCount(){
+      $.ajax({
+        type: "POST",
+        url: "/father",
+        dataType: "json",
+        data: {
+          "state": 1
+          }
+        });
+      }
+      visitCount()
+    </script>
   </div>
 </body>
 

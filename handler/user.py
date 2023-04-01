@@ -53,7 +53,8 @@ def register():
             'name': request.values.get('name'),
             'password': md5(request.values.get('password'), time_then),
             'status': 1,
-            'visit': 0,
+            'visit_all_count': 0,
+            'visit_index_count': 0,
             'time': time_then,
             }
         db.insert_one(document)
